@@ -9,6 +9,7 @@
     <div class="container" style="margin-top: 40px">
       <div class="row">
         <div class="col-md-8 offset-md-2">
+          <hr>
           <div v-if="isLoading">Loading news from the blockchain...</div>
           <div v-if="!isLoading" class="news-head">
             <div v-if="!news.data.title">

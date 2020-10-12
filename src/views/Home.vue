@@ -74,7 +74,7 @@ export default {
                       let nws = response.data.data[x].data
                       if(nws.signature !== undefined){
                         let verify = await app.scrypta.verifyMessage(nws.pubkey, nws.signature, nws.message)
-                        if(verify !== false){
+                        if(verify !== false && app.publishers[nws.pubkey] !== undefined){
                           response.data.data[x].data = JSON.parse(response.data.data[x].data.message)
                           response.data.data[x].data.publisher = nws.pubkey
                           if(response.data.data[x].data.version !== undefined && response.data.data[x].data.version === 2){
@@ -97,20 +97,6 @@ export default {
                             }
                           }
                         }
-                      }else{
-                        if(nws.title !== undefined){
-                          response.data.data[x].data.title = LZUTF8.decompress(nws.title, { inputEncoding: 'Base64' });
-                          response.data.data[x].data.subtitle = LZUTF8.decompress(nws.subtitle, { inputEncoding: 'Base64' });
-                          response.data.data[x].data.image = LZUTF8.decompress(nws.image, { inputEncoding: 'Base64' });
-                          response.data.data[x].data.text = LZUTF8.decompress(nws.text, { inputEncoding: 'Base64' });
-                          if(nws.tags !== undefined){
-                            response.data.data[x].data.tags = LZUTF8.decompress(nws.tags, { inputEncoding: 'Base64' });
-                            response.data.data[x].data.tags = JSON.parse(response.data.data[x].data.tags)
-                          }else{
-                            response.data.data[x].data.tags = []
-                          }
-                        }
-                        app.feed.push(response.data.data[x])
                       }
                     }
                     app.feed.sort(function(a, b) {
