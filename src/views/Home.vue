@@ -34,7 +34,7 @@
                 Published on {{ news.data.pubdate }}
               </div>
               <div style="font-size:14px;" v-if="news.data.domain">
-                Original content at <b style="font-size:9px"><a :href="news.data.link" target="_blank">{{ news.data.domain }}</a></b>
+                Original content at <b style="font-size:14px"><a :href="news.data.link" target="_blank">{{ news.data.domain }}</a></b>
               </div>
               <hr>
             </div>

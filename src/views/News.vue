@@ -21,27 +21,13 @@
               <h1 style="margin: 0; padding: 0; margin-bottom: -30px">
                 {{ news.data.title }}
               </h1>
-              <br />
+              <br /><br >
             </div>
             <div v-if="news.data.subtitle">
               <h3 style="margin: 0; padding: 0; margin-bottom: -30px">
                 {{ news.data.subtitle }}
               </h3>
               <br />
-            </div>
-            <div v-if="news.data.publisher">
-              <br />
-              Published by
-              <a :href="'/#/publisher/' + news.data.publisher"
-                ><b v-if="publishers[news.data.publisher]">{{
-                  publishers[news.data.publisher]
-                }}</b
-                ><b
-                  v-if="!publishers[news.data.publisher]"
-                  style="font-size: 9px"
-                  >{{ news.data.publisher }}</b
-                ></a
-              >
             </div>
             <div v-if="news.data.tags">
               <span
