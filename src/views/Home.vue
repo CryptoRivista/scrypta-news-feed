@@ -1,13 +1,11 @@
 <template>
   <div class="container" style="margin-top:40px">
     <vue-headful
-      title="Scrypta Decentralized News Feed"
+      title="CryptoRivista Decentralized News Feed"
       description="Read articles from trusted sources."
     />
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <h1>Scrypta News</h1>
-        <h3>read articles from trusted sources.</h3>
         <hr>
         <div v-if="isLoading">Loading news from the blockchain...</div>
         <div v-if="!isLoading">
@@ -18,33 +16,25 @@
               </a>
               <div v-if="news.data.image && news.data.image.indexOf('file://') === -1 && news.data.image.indexOf('http://') === -1 && news.data.image.indexOf('https://') === 0"><img style="margin-bottom:20px" :src="news.data.image" width="100%"></div>
               <div v-if="!news.data.title">
-               <h3 style="margin:0; padding:0; font-size:17px!important; font-weight:bold; padding-right:40px">{{ news.refID }}</h3>
+               <h3 style="margin:0; padding:0; font-size:24px!important; font-weight:bold; padding-right:40px">{{ news.refID }}</h3>
               </div>
               <div v-if="news.data.title">
-               <h3 style="margin:0; padding:0; font-size:17px!important; font-weight:bold; padding-right:40px">{{ news.data.title }}</h3>
+               <h3 style="margin:0; padding:0; font-size:24px!important; font-weight:bold; padding-right:40px">{{ news.data.title }}</h3>
               </div>
               <div v-if="news.data.tags">
                <span v-for="tag in news.data.tags" v-bind:key="tag" style="margin:0; padding:0; font-size:13px; padding-right:10px">#{{ tag }}</span>
               </div>
-              <div style="font-size:11px;" v-if="!news.data.creator">
+              <div style="font-size:14px;" v-if="!news.data.creator">
                 Written by <b><a :href="'/#/author/' + news.address">{{ news.address.substr(0,3) }}...{{ news.address.substr(-3) }}</a></b> at block <i>{{ news.block }}</i>
               </div>
-              <div style="font-size:11px;" v-if="news.data.creator">
+              <div style="font-size:14px;" v-if="news.data.creator">
                 Written by <b><a :href="'/#/author/' + news.address">{{ news.data.creator }}</a></b> and notarized block <i>{{ news.block }}</i>
               </div>
-              <div style="font-size:11px;" v-if="news.data.publisher">
-                Published by <a :href="'/#/publisher/' + news.data.publisher"><b v-if="publishers[news.data.publisher]">{{ publishers[news.data.publisher] }}</b><b v-if="!publishers[news.data.publisher]" style="font-size:9px">{{ news.data.publisher }}</b></a> on {{ news.data.pubdate }}
+              <div style="font-size:14px;" v-if="news.data.publisher">
+                Published on {{ news.data.pubdate }}
               </div>
-              <div style="font-size:11px;" v-if="news.data.domain">
+              <div style="font-size:14px;" v-if="news.data.domain">
                 Original content at <b style="font-size:9px"><a :href="news.data.link" target="_blank">{{ news.data.domain }}</a></b>
-              </div>
-              <div v-if="counters" class="counters">
-                <div v-for="counter in counters" v-bind:key="counter.uuid">
-                  <div v-if="counter.uuid === news.uuid">
-                    <b><b-icon-arrow-up></b-icon-arrow-up> {{ counter.upvotes }}</b> UPVOTES
-                    <b><b-icon-arrow-down></b-icon-arrow-down> {{ counter.downvotes }}</b> DOWNVOTES
-                  </div>
-                </div>
               </div>
               <hr>
             </div>

@@ -5,81 +5,7 @@
       :title="news.data.title"
       :description="news.data.subtitle"
     />
-    <b-modal
-      v-model="showTipModal"
-      class="text-center"
-      hide-footer
-      title="Tip User sending Lyra"
-    >
-      Send a tip to the user directly from here!<br /><br />
-      <b-form-input
-        v-model="unlockPwd"
-        type="password"
-        placeholder="Enter wallet password"
-      ></b-form-input
-      ><br />
-      <b-input-group prepend="LYRA" class="mb-2 mr-sm-2 mb-sm-0">
-        <b-input
-          v-model="amountTip"
-          id="inline-form-input-username"
-          placeholder="Amount you want to send"
-        ></b-input> </b-input-group
-      ><br />
-      <div
-        v-if="!isUploading"
-        @click.prevent="tip"
-        style="width: 100%"
-        class="btn btn-primary"
-      >
-        Tip
-      </div>
-    </b-modal>
-    <b-modal
-      v-model="showUpvoteModal"
-      class="text-center"
-      hide-footer
-      title="Upvote news"
-    >
-      By upvoting this news you're marking it as a true and trustable news and
-      this action will be public.<br /><br />
-      <b-form-input
-        v-model="unlockPwd"
-        type="password"
-        placeholder="Enter wallet password"
-      ></b-form-input
-      ><br />
-      <div
-        v-if="!isUploading"
-        @click.prevent="upvote"
-        style="width: 100%"
-        class="btn btn-primary"
-      >
-        Upvote
-      </div>
-    </b-modal>
-    <b-modal
-      v-model="showDownvoteModal"
-      class="text-center"
-      hide-footer
-      title="Downvote news"
-    >
-      By downvoting this news you're marking it as a fake news or spam or
-      untrustable and this action will be public.<br /><br />
-      <b-form-input
-        v-model="unlockPwd"
-        type="password"
-        placeholder="Enter wallet password"
-      ></b-form-input
-      ><br />
-      <div
-        v-if="!isUploading"
-        @click.prevent="downvote"
-        style="width: 100%"
-        class="btn btn-primary"
-      >
-        Downvote
-      </div>
-    </b-modal>
+  
     <div class="container" style="margin-top: 40px">
       <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -265,42 +191,6 @@
                 </ShareNetwork>
               </div>
             <hr />
-            <div style="width: 100%; height: 30px" class="counters" v-if="user">
-              <b-button
-                size="sm"
-                style="float: left"
-                variant="success"
-                v-on:click="openUpvote"
-                class="my-2 my-sm-0"
-              >
-                <b-icon-arrow-up></b-icon-arrow-up>
-                {{ upvotes }} UPVOTE
-              </b-button>
-              <b-button
-                size="sm"
-                style="margin-left: 10px; float: left"
-                variant="danger"
-                v-on:click="openDownvote"
-                class="my-2 my-sm-0"
-              >
-                <b-icon-arrow-down></b-icon-arrow-down>
-                {{ downvotes }} DOWNVOTE
-              </b-button>
-              <b-button
-                size="sm"
-                style="float: right"
-                variant="primary"
-                v-on:click="openTip"
-                class="my-2 my-sm-0 tipuser"
-              >
-                <b-icon-credit-card></b-icon-credit-card> TIP USER
-              </b-button>
-            </div>
-            <div v-if="!user">
-              <b><b-icon-arrow-up></b-icon-arrow-up> {{ upvotes }}</b> UPVOTES
-              <b><b-icon-arrow-down></b-icon-arrow-down> {{ downvotes }}</b>
-              DOWNVOTES
-            </div>
             <hr />
             <div v-if="!news.data.text">
               <div class="news news-text" v-html="news.data"></div>
