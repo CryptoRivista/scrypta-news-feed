@@ -103,39 +103,11 @@ export default {
                       return parseFloat(b.data.time) - parseFloat(a.data.time);
                     });
                     app.isLoading = false
-                    app.readCounters()
                   })
                 }
               }
             }
           )
-        }
-      },
-      async readCounters(){
-        const app = this
-        for(let y in app.feed){
-          let votes = await app.axios.post(app.connected + '/read',{ protocol: 'news://', refID: app.feed[y].uuid})
-          let upvotes = 0
-          let downvotes = 0
-          for(let x in votes.data.data){
-            if(app.voters[app.feed[y].uuid] === undefined){
-              app.voters[app.feed[y].uuid] = {}
-            }
-            if(app.voters[app.feed[y].uuid][votes.data.data[x].address] === undefined){
-              if(votes.data.data[x].data === 'upvote'){
-                upvotes++
-                app.voters[app.feed[y].uuid][votes.data.data[x].address] = 'upvote'
-              }else if(votes.data.data[x].data === 'downvote'){
-                downvotes++
-                app.voters[app.feed[y].uuid][votes.data.data[x].address] = 'downvote'
-              }
-            }
-          }
-          app.counters.push({
-            'uuid': app.feed[y].uuid,
-            'upvotes': upvotes,
-            'downvotes': downvotes
-          })
         }
       }
   },
