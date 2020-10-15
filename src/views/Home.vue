@@ -67,6 +67,7 @@ export default {
                   app.connected = check.config.url.replace('/wallet/getinfo','')
                   app.axios.post(app.connected + '/read', {
                     protocol: 'news://',
+                    pubkey: '0236480adc4f111ddb097d657f400f71dd0209586ea6a9c9159b7e7dc0be89e9ac',
                     limit: 1000000
                   }).then(async response => {
                     let unique = []
